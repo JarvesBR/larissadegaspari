@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Larissa Degaspari | Nutricionista</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --creme: #F5F0E8;
+    --creme-escuro: #EAE2D4;
+    --marrom: #8B5E3C;
+    --marrom-claro: #C4956A;
+    --laranja: #D4692B;
+    --verde-sage: #A8B89A;
+    --verde-folha: #7D9E6E;
+    --texto: #4A3728;
+    --texto-suave: #7A6558;
+    --branco: #FDFAF5;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Lato', sans-serif; background-color: var(--creme); color: var(--texto); overflow-x: hidden; }
+
+  /* HERO */
+  .hero { min-height: 100vh; background-color: var(--branco); display: grid; grid-template-columns: 1fr 1fr; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -60px; right: -60px; width: 320px; height: 320px; border-radius: 50%; background: var(--creme-escuro); opacity: 0.5; }
+  .hero::after { content: ''; position: absolute; bottom: -40px; left: -40px; width: 200px; height: 200px; border-radius: 50%; background: var(--verde-sage); opacity: 0.15; }
+  .hero-foto { position: relative; overflow: hidden; animation: heroFotoIn 1s cubic-bezier(0.22,1,0.36,1) both; }
+  .hero-foto img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+  .hero-foto::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, transparent 70%, var(--branco)); }
+  .hero-conteudo { display: flex; flex-direction: column; justify-content: center; padding: 60px 48px 60px 32px; position: relative; z-index: 2; }
+  .badge-nutri { display: inline-flex; align-items: center; gap: 8px; background: var(--creme-escuro); color: var(--marrom); font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 8px 16px; border-radius: 100px; margin-bottom: 24px; width: fit-content; }
+  .badge-nutri span { width: 6px; height: 6px; border-radius: 50%; background: var(--verde-folha); }
+  .hero-nome { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem,4vw,3.2rem); font-weight: 400; color: var(--texto); line-height: 1.15; margin-bottom: 8px; }
+  .hero-nome em { color: var(--marrom-claro); font-style: italic; }
+  .hero-titulo { font-size: 13px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--verde-folha); margin-bottom: 24px; }
+  .hero-desc { font-size: 17px; line-height: 1.75; color: var(--texto-suave); font-weight: 300; margin-bottom: 40px; max-width: 380px; }
+  .hero-desc strong { color: var(--marrom); font-weight: 700; }
+  .btn-agendar { display: inline-block; background: var(--laranja); color: #fff; font-family: 'Lato', sans-serif; font-size: 15px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; padding: 18px 40px; border-radius: 100px; transition: transform 0.2s, box-shadow 0.2s; width: fit-content; box-shadow: 0 4px 20px rgba(212,105,43,0.3); }
+  .btn-agendar:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(212,105,43,0.4); }
+  .hero-local { margin-top: 20px; font-size: 13px; color: var(--texto-suave); display: flex; align-items: center; gap: 6px; }
+
+  /* DIVISOR */
+  .divisor { height: 80px; background: var(--branco); position: relative; overflow: hidden; }
+  .divisor svg { position: absolute; bottom: 0; left: 0; width: 100%; height: 100%; }
+
+  /* PENSAMENTOS */
+  .pensamentos { background: var(--creme); padding: 80px 5%; text-align: center; }
+  .pensamentos-label { font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--verde-folha); margin-bottom: 12px; }
+  .pensamentos h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem,3vw,2.6rem); font-weight: 400; color: var(--texto); margin-bottom: 8px; }
+  .pensamentos h2 em { color: var(--laranja); font-style: italic; }
+  .pensamentos-sub { font-size: 16px; color: var(--texto-suave); font-weight: 300; margin-bottom: 56px; max-width: 500px; margin-left: auto; margin-right: auto; line-height: 1.6; }
+  .cards-pensamentos { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 20px; max-width: 900px; margin: 0 auto; }
+  .card-pensamento { background: var(--branco); border-radius: 20px; padding: 28px 24px; text-align: left; border-left: 4px solid var(--marrom-claro); transition: transform 0.2s; }
+  .card-pensamento:hover { transform: translateY(-4px); }
+  .card-pensamento .aspas { font-family: 'Playfair Display', serif; font-size: 48px; color: var(--creme-escuro); line-height: 1; margin-bottom: -8px; }
+  .card-pensamento p { font-size: 16px; font-style: italic; color: var(--texto); line-height: 1.6; }
+
+  /* AJUDA */
+  .ajuda { background: var(--texto); padding: 80px 5%; color: var(--creme); }
+  .ajuda-inner { max-width: 960px; margin: 0 auto; }
+  .ajuda-label { font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--verde-sage); margin-bottom: 12px; }
+  .ajuda h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem,3vw,2.6rem); font-weight: 400; color: var(--branco); margin-bottom: 48px; max-width: 500px; }
+  .ajuda h2 em { color: var(--marrom-claro); font-style: italic; }
+  .servicos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 24px; }
+  .servico-card { border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 32px 28px; transition: background 0.25s; position: relative; overflow: hidden; }
+  .servico-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--marrom-claro); opacity: 0; transition: opacity 0.25s; }
+  .servico-card:hover { background: rgba(255,255,255,0.05); }
+  .servico-card:hover::before { opacity: 1; }
+  .servico-icone { font-size: 28px; margin-bottom: 16px; }
+  .servico-card h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 600; color: var(--branco); margin-bottom: 10px; }
+  .servico-card p { font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.55); font-weight: 300; }
+
+  /* ABORDAGEM */
+  .abordagem { background: var(--branco); padding: 80px 5%; }
+  .abordagem-inner { max-width: 960px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .abordagem-texto .label { font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--verde-folha); margin-bottom: 12px; }
+  .abordagem-texto h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem,3vw,2.4rem); font-weight: 400; color: var(--texto); margin-bottom: 20px; line-height: 1.3; }
+  .abordagem-texto h2 em { color: var(--marrom-claro); font-style: italic; }
+  .abordagem-texto p { font-size: 16px; line-height: 1.8; color: var(--texto-suave); font-weight: 300; margin-bottom: 16px; }
+  .pilares { display: flex; flex-direction: column; gap: 16px; }
+  .pilar { display: flex; align-items: flex-start; gap: 16px; background: var(--creme); border-radius: 14px; padding: 20px; }
+  .pilar-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--laranja); margin-top: 5px; flex-shrink: 0; }
+  .pilar h4 { font-weight: 700; font-size: 15px; color: var(--texto); margin-bottom: 4px; }
+  .pilar p { font-size: 13px; color: var(--texto-suave); line-height: 1.6; margin: 0; }
+
+  /* INSTAGRAM */
+  .instagram { background: var(--creme-escuro); padding: 72px 5%; text-align: center; }
+  .instagram .label { font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--verde-folha); margin-bottom: 12px; }
+  .instagram h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem,3vw,2.4rem); font-weight: 400; color: var(--texto); margin-bottom: 10px; }
+  .instagram p { font-size: 16px; color: var(--texto-suave); font-weight: 300; margin-bottom: 36px; }
+  .btn-instagram { display: inline-flex; align-items: center; gap: 10px; background: var(--texto); color: var(--branco); font-size: 14px; font-weight: 700; letter-spacing: 1px; text-decoration: none; padding: 16px 36px; border-radius: 100px; transition: transform 0.2s, background 0.2s; }
+  .btn-instagram:hover { transform: translateY(-2px); background: var(--marrom); }
+
+  /* CTA */
+  .cta { background: var(--laranja); padding: 80px 5%; text-align: center; position: relative; overflow: hidden; }
+  .cta::before { content: ''; position: absolute; top: -80px; right: -80px; width: 300px; height: 300px; border-radius: 50%; background: rgba(255,255,255,0.1); }
+  .cta::after { content: ''; position: absolute; bottom: -60px; left: -60px; width: 250px; height: 250px; border-radius: 50%; background: rgba(255,255,255,0.08); }
+  .cta-inner { position: relative; z-index: 2; }
+  .cta h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem,4vw,3rem); font-weight: 400; color: #fff; margin-bottom: 16px; line-height: 1.25; }
+  .cta p { font-size: 17px; color: rgba(255,255,255,0.85); font-weight: 300; margin-bottom: 40px; max-width: 480px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+  .btn-branco { display: inline-block; background: #fff; color: var(--laranja); font-size: 15px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; padding: 18px 48px; border-radius: 100px; transition: transform 0.2s; box-shadow: 0 4px 24px rgba(0,0,0,0.15); }
+  .btn-branco:hover { transform: translateY(-2px); }
+
+  /* RODAPÉ */
+  footer { background: var(--texto); color: rgba(255,255,255,0.5); text-align: center; padding: 32px 20px; font-size: 13px; }
+  footer a { color: var(--marrom-claro); text-decoration: none; }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-foto { height: 360px; }
+    .hero-foto::after { background: linear-gradient(to bottom, transparent 60%, var(--branco)); }
+    .hero-conteudo { padding: 32px 24px 56px; }
+    .abordagem-inner { grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  /* ANIMAÇÕES HERO (entrada imediata) */
+  @keyframes heroFotoIn {
+    from { opacity: 0; transform: translateX(-30px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes heroContentIn {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-conteudo > * { animation: heroContentIn 0.7s cubic-bezier(0.22,1,0.36,1) both; }
+  .hero-conteudo > *:nth-child(1) { animation-delay: 0.15s; }
+  .hero-conteudo > *:nth-child(2) { animation-delay: 0.25s; }
+  .hero-conteudo > *:nth-child(3) { animation-delay: 0.35s; }
+  .hero-conteudo > *:nth-child(4) { animation-delay: 0.45s; }
+  .hero-conteudo > *:nth-child(5) { animation-delay: 0.55s; }
+  .hero-conteudo > *:nth-child(6) { animation-delay: 0.65s; }
+
+  /* ANIMAÇÕES DE SCROLL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1),
+                transform 0.8s cubic-bezier(0.22,1,0.36,1);
+  }
+  .reveal.from-left  { transform: translateX(-40px); }
+  .reveal.from-right { transform: translateX(40px); }
+  .reveal.scale-in   { transform: scale(0.9) translateY(10px); }
+  .reveal.visible    { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<!-- HERO / SOBRE -->
+<section class="hero" id="sobre">
+  <div class="hero-foto">
+    <img src="/mnt/user-data/uploads/1778606942792_perfil.png" alt="Larissa Degaspari, Nutricionista">
+  </div>
+  <div class="hero-conteudo">
+    <div class="badge-nutri"><span></span> CRN Registrada</div>
+    <h1 class="hero-nome"><em>Larissa</em><br>Degaspari</h1>
+    <p class="hero-titulo">Nutricionista</p>
+    <p class="hero-desc">Nutricionista da <strong>vida real</strong>, sem complicação.<br>Praticidade e ciência juntas para te ajudar a alcançar seus objetivos de forma saudável e sustentável.</p>
+    <a href="https://wa.me/55?text=Olá+Larissa!+Gostaria+de+agendar+uma+avaliação." target="_blank" class="btn-agendar">Agendar Avaliação</a>
+    <p class="hero-local">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+      Limeira – SP
+    </p>
+  </div>
+</section>
+
+<!-- DIVISOR -->
+<div class="divisor">
+  <svg viewBox="0 0 1200 80" preserveAspectRatio="none">
+    <path d="M0,0 L0,80 L1200,80 L1200,20 Q600,80 0,0 Z" fill="#F5F0E8"/>
+  </svg>
+</div>
+
+<!-- PENSAMENTOS -->
+<section class="pensamentos">
+  <p class="pensamentos-label reveal">Você se identifica?</p>
+  <h2 class="reveal" style="transition-delay:0.1s">Pensamentos que <em>atrapalham</em><br>sua evolução</h2>
+  <p class="pensamentos-sub reveal" style="transition-delay:0.2s">Se você já disse alguma dessas frases, saiba que não está sozinha — e que existe uma saída prática!</p>
+  <div class="cards-pensamentos">
+    <div class="card-pensamento reveal" style="transition-delay:0.05s"><div class="aspas">"</div><p>Segunda eu começo...</p></div>
+    <div class="card-pensamento reveal" style="transition-delay:0.15s"><div class="aspas">"</div><p>Final de semana pode!!</p></div>
+    <div class="card-pensamento reveal" style="transition-delay:0.25s"><div class="aspas">"</div><p>Tô de TPM, não conta.</p></div>
+    <div class="card-pensamento reveal" style="transition-delay:0.35s"><div class="aspas">"</div><p>O dia foi cansativo, eu mereço!</p></div>
+  </div>
+</section>
+
+<!-- COMO POSSO AJUDAR -->
+<section class="ajuda">
+  <div class="ajuda-inner">
+    <p class="ajuda-label reveal">Serviços</p>
+    <h2 class="reveal" style="transition-delay:0.1s">Como posso<br><em>te ajudar</em></h2>
+    <div class="servicos-grid">
+      <div class="servico-card reveal" style="transition-delay:0.05s">
+        <div class="servico-icone">🥗</div>
+        <h3>Plano Alimentar Personalizado</h3>
+        <p>Montamos juntas um cardápio que cabe na sua rotina, sem abrir mão do que você ama comer.</p>
+      </div>
+      <div class="servico-card reveal" style="transition-delay:0.15s">
+        <div class="servico-icone">⚖️</div>
+        <h3>Emagrecimento Inteligente</h3>
+        <p>Sem dietas restritivas e sem sofrimento. Perda de peso com saúde, praticidade e resultado real.</p>
+      </div>
+      <div class="servico-card reveal" style="transition-delay:0.25s">
+        <div class="servico-icone">💊</div>
+        <h3>Suplementação e Saúde Hormonal</h3>
+        <p>Orientação sobre suplementos e nutrição focada em equilíbrio hormonal e bem-estar feminino.</p>
+      </div>
+      <div class="servico-card reveal" style="transition-delay:0.35s">
+        <div class="servico-icone">📲</div>
+        <h3>Acompanhamento Online</h3>
+        <p>Consultas pelo WhatsApp ou videochamada, com suporte contínuo para você alcançar seus objetivos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MINHA ABORDAGEM -->
+<section class="abordagem">
+  <div class="abordagem-inner">
+    <div class="abordagem-texto">
+      <p class="label reveal from-left">Minha abordagem</p>
+      <h2 class="reveal from-left" style="transition-delay:0.1s">Nutrição <em>real</em>,<br>para a vida real</h2>
+      <p class="reveal from-left" style="transition-delay:0.2s">Aqui não tem fórmula mágica nem cardápio que parece lista de restrições. Trabalho com você para que a alimentação saudável seja algo prazeroso, sustentável e encaixado na sua realidade.</p>
+      <p class="reveal from-left" style="transition-delay:0.3s">Adoro compartilhar dicas práticas — fique de olho nos stories! 😉</p>
+    </div>
+    <div class="pilares">
+      <div class="pilar reveal from-right" style="transition-delay:0.05s">
+        <div class="pilar-dot"></div>
+        <div><h4>Praticidade acima de tudo</h4><p>Receitas e estratégias simples que cabem no seu dia a dia corrido.</p></div>
+      </div>
+      <div class="pilar reveal from-right" style="transition-delay:0.15s">
+        <div class="pilar-dot"></div>
+        <div><h4>Sem culpa, sem restrição</h4><p>Aprenda a comer bem sem abrir mão do que você gosta.</p></div>
+      </div>
+      <div class="pilar reveal from-right" style="transition-delay:0.25s">
+        <div class="pilar-dot"></div>
+        <div><h4>Resultados duradouros</h4><p>Mudanças de hábito que você mantém — não uma dieta de 30 dias.</p></div>
+      </div>
+      <div class="pilar reveal from-right" style="transition-delay:0.35s">
+        <div class="pilar-dot"></div>
+        <div><h4>Acolhimento e escuta</h4><p>Cada corpo é único. Seu plano é feito especialmente pra você.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM -->
+<section class="instagram">
+  <p class="label reveal">Redes Sociais</p>
+  <h2 class="reveal" style="transition-delay:0.1s">Me siga no Instagram!</h2>
+  <p class="reveal" style="transition-delay:0.2s">Dicas diárias, storys práticos e conteúdo de nutrição sem complicação. 👀</p>
+  <a href="https://www.instagram.com/nutrilaridegaspari/" target="_blank" class="btn-instagram reveal scale-in" style="transition-delay:0.32s">
+    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+    @nutrilaridegaspari
+  </a>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="cta-inner">
+    <h2 class="reveal" style="transition-delay:0.05s">Pronta para dar<br>o primeiro passo?</h2>
+    <p class="reveal" style="transition-delay:0.18s">Agende sua avaliação nutricional e descubra como a alimentação pode transformar sua saúde e qualidade de vida — de forma simples e sem sofrimento.</p>
+    <a href="https://wa.me/55?text=Olá+Larissa!+Gostaria+de+agendar+uma+avaliação+nutricional." target="_blank" class="btn-branco reveal scale-in" style="transition-delay:0.32s">
+      Agendar pelo WhatsApp
+    </a>
+  </div>
+</section>
+
+<!-- RODAPÉ -->
+<footer>
+  <p>© 2025 Larissa Degaspari – Nutricionista &nbsp;|&nbsp; <a href="https://www.instagram.com/nutrilaridegaspari/" target="_blank">@nutrilaridegaspari</a> &nbsp;|&nbsp; Limeira, SP</p>
+</footer>
+
+<script>
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(function(el) {
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
