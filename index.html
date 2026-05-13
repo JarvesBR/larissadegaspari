@@ -5,13 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Larissa Degaspari | Nutricionista</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-  <!-- Open Graph -->
-<meta property="og:title" content="Larissa Degaspari Nutricionista da vida real">
-<meta property="og:description" content="Cuidado personalizado com foco na saúde da mulher">
-<meta property="og:image" content="perfil.png">
-<meta property="og:url" content="https://https://mutrevisan.github.io/larissadegaspari/perfil.png">
-<meta property="og:type" content="website">
-<meta property="og:locale" content="pt_BR">
 <style>
   :root {
     --creme: #F5F0E8;
@@ -30,13 +23,13 @@
   body { font-family: 'Lato', sans-serif; background-color: var(--creme); color: var(--texto); overflow-x: hidden; }
 
   /* HERO */
-  .hero { min-height: 100vh; background-color: var(--branco); display: grid; grid-template-columns: 1fr 1fr; position: relative; overflow: hidden; }
+  .hero { min-height: 100vh; background-color: var(--branco); display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 40px; padding: 60px 5%; position: relative; overflow: hidden; }
   .hero::before { content: ''; position: absolute; top: -60px; right: -60px; width: 320px; height: 320px; border-radius: 50%; background: var(--creme-escuro); opacity: 0.5; }
   .hero::after { content: ''; position: absolute; bottom: -40px; left: -40px; width: 200px; height: 200px; border-radius: 50%; background: var(--verde-sage); opacity: 0.15; }
-  .hero-foto { position: relative; overflow: hidden; animation: heroFotoIn 1s cubic-bezier(0.22,1,0.36,1) both; }
+  .hero-foto-wrap { animation: heroFotoIn 1s cubic-bezier(0.22,1,0.36,1) both; display: flex; justify-content: center; align-items: center; }
+  .hero-foto { width: 100%; max-width: 400px; aspect-ratio: 3/4; border-radius: 48% 52% 42% 58% / 44% 48% 52% 56%; overflow: hidden; background: var(--creme-escuro); outline: 6px solid var(--creme-escuro); outline-offset: 6px; box-shadow: 0 24px 60px rgba(74,55,40,0.15); }
   .hero-foto img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
-  .hero-foto::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, transparent 70%, var(--branco)); }
-  .hero-conteudo { display: flex; flex-direction: column; justify-content: center; padding: 60px 48px 60px 32px; position: relative; z-index: 2; }
+  .hero-conteudo { display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 2; }
   .badge-nutri { display: inline-flex; align-items: center; gap: 8px; background: var(--creme-escuro); color: var(--marrom); font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 8px 16px; border-radius: 100px; margin-bottom: 24px; width: fit-content; }
   .badge-nutri span { width: 6px; height: 6px; border-radius: 50%; background: var(--verde-folha); }
   .hero-nome { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem,4vw,3.2rem); font-weight: 400; color: var(--texto); line-height: 1.15; margin-bottom: 8px; }
@@ -116,10 +109,10 @@
 
   /* MOBILE */
   @media (max-width: 768px) {
-    .hero { grid-template-columns: 1fr; min-height: auto; }
-    .hero-foto { height: 360px; }
-    .hero-foto::after { background: linear-gradient(to bottom, transparent 60%, var(--branco)); }
-    .hero-conteudo { padding: 32px 24px 56px; }
+    .hero { grid-template-columns: 1fr; min-height: auto; padding: 40px 6%; gap: 32px; }
+    .hero-foto-wrap { order: -1; }
+    .hero-foto { max-width: 260px; aspect-ratio: 1/1; border-radius: 50%; }
+    .hero-conteudo { order: 1; }
     .abordagem-inner { grid-template-columns: 1fr; gap: 40px; }
   }
 
@@ -157,8 +150,10 @@
 
 <!-- HERO / SOBRE -->
 <section class="hero" id="sobre">
-  <div class="hero-foto">
-    <img src="perfil.png" alt="Larissa Degaspari, Nutricionista">
+  <div class="hero-foto-wrap">
+    <div class="hero-foto">
+      <img src="perfil.png" alt="Larissa Degaspari, Nutricionista">
+    </div>
   </div>
   <div class="hero-conteudo">
     <div class="badge-nutri"><span></span> CRN Registrada</div>
